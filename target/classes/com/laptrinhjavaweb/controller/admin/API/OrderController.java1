@@ -1,0 +1,46 @@
+package com.laptrinhjavaweb.controller.admin.API;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.laptrinhjavaweb.Constants.SystemConstants;
+import com.laptrinhjavaweb.Service.IOrderService;
+import com.laptrinhjavaweb.Utils.FormUtils;
+import com.laptrinhjavaweb.model.OrderModel;
+
+@WebServlet(urlPatterns = {"/admin-order"})
+public class OrderController extends HttpServlet{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7028818309080146479L;
+	
+	@Inject
+	private IOrderService iorderService;
+	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		OrderModel orderModel = FormUtils.toModel(OrderModel.class, request);
+		String path = "/views/admin/book/listOrder.jsp";
+		if(orderModel.getType() != null) {
+			
+		}else {
+			path = "/views/admin/book/listbook.jsp";
+			List<OrderModel> listOrder = iorderService.findAllOrderByCreateDate();
+			orderModel.setListResult(listOrder);
+			request.setAttribute(SystemConstants.LIST_ORDER, listOrder);
+		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+		dispatcher.forward(request, response);
+	}
+}

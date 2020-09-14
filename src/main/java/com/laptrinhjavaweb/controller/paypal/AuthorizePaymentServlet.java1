@@ -1,0 +1,39 @@
+package com.laptrinhjavaweb.controller.paypal;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.laptrinhjavaweb.Constants.SystemConstants;
+import com.laptrinhjavaweb.Utils.SessionUtils;
+import com.laptrinhjavaweb.model.CartModel;
+import com.paypal.base.rest.PayPalRESTException;
+
+@WebServlet(urlPatterns = {"/authorize_payment"})
+public class AuthorizePaymentServlet extends HttpServlet{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9080823162651005444L;
+	
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CartModel cartModel = (CartModel) SessionUtils.getIntance().getValue(request, SystemConstants.MY_CART); 
+		
+		PaymentService paymentService = new PaymentService();
+		String approvalLink;
+		try {
+			approvalLink = paymentService.authorizetPayment(cartModel);
+			response.sendRedirect(approvalLink);
+		} catch (PayPalRESTException e) {
+			e.printStackTrace();
+		}
+		
+	}
+}

@@ -1,0 +1,109 @@
+package com.laptrinhjavaweb.controller.paypal;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.laptrinhjavaweb.model.BookModel;
+import com.laptrinhjavaweb.model.CartModel;
+import com.paypal.api.payments.Amount;
+import com.paypal.api.payments.Details;
+import com.paypal.api.payments.Item;
+import com.paypal.api.payments.ItemList;
+import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payer;
+import com.paypal.api.payments.PayerInfo;
+import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.RedirectUrls;
+import com.paypal.api.payments.Transaction;
+import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.PayPalRESTException;
+
+public class PaymentService {
+	private static final String CLIENT_ID = "AV5r3mOFvdiBFUlfdDwQWnDxb6XzjVWldYeffd6rpG-x_Gedz8wGDxyGuNQneTjP30BaC7MoCFhxyBXx";
+	private static final String CLIENT_SECRET = "EOTqMb1YqMPuUpQ_KaQ39FYXT0PgMvlRU8rkNrAtfOIe53iiVLv0oyl6wuTfyguGcI6PaI7SkAkC8MaD";
+	private static final String MODE = "sandbox";
+	
+	public String authorizetPayment(CartModel cartModel) throws PayPalRESTException {
+		Payer payer = getPayerInformation();
+		RedirectUrls redirectUrls = getRedirectURLs();
+		List<Transaction> listTransactions = getTransactionInformation(cartModel);
+		
+		Payment requestPayment = new Payment();
+		requestPayment.setTransactions(listTransactions).
+						setRedirectUrls(redirectUrls).
+						setPayer(payer).
+						setIntent("authorize");
+		
+		APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
+		Payment approvedPayment = requestPayment.create(apiContext);
+		
+		System.out.println(approvedPayment);
+		
+		return getApprovalLink(approvedPayment);
+	}
+	
+	private String getApprovalLink(Payment approvedPayment) {
+		List<Links> links = approvedPayment.getLinks();
+		String approvalLink = null;
+		for(Links link : links) {
+			if(link.getRel().equalsIgnoreCase("approval_url")) {
+				approvalLink = link.getHref();
+			}
+		}
+		return approvalLink;
+	}
+	
+	private List<Transaction> getTransactionInformation(CartModel cartModel){
+		Details details = new Details();
+		details.setShipping("0.0");
+		details.setSubtotal("0.0");
+		details.setTax("0.0");
+		
+		Amount amount = new Amount();
+		amount.setCurrency("USD");
+		amount.setTotal(String.valueOf(cartModel.getTotalCash()));
+		amount.setDetails(details);
+		
+		Transaction transaction = new Transaction();
+		transaction.setAmount(amount);
+		transaction.setDescription("Payment Product Of PTIT SHOP With PayPal.");
+		
+		ItemList itemList = new ItemList();
+		List<Item> items = new ArrayList<>();
+		for(BookModel bookModel : cartModel.getListBooks()) {
+			Item item = new Item();
+			item.setCurrency("USD").
+			setName(bookModel.getBookName()).
+			setTax("0.0").
+			setPrice(String.valueOf(bookModel.getPrice())).
+			setQuantity(String.valueOf(bookModel.getAmount()));
+			
+			items.add(item);
+		}
+		itemList.setItems(items);
+		
+		transaction.setItemList(itemList);
+		List<Transaction> listTransaction = new ArrayList<>();
+		listTransaction.add(transaction);
+		
+		return listTransaction;
+	}
+
+	private RedirectUrls getRedirectURLs() {
+		RedirectUrls redirectUrls = new RedirectUrls();
+		redirectUrls.setCancelUrl("");
+		redirectUrls.setReturnUrl("");
+		return redirectUrls;
+	}
+
+	private Payer getPayerInformation() {
+		Payer payer = new Payer();
+		payer.setPaymentMethod("paypal");
+		
+		PayerInfo payerInfo = new PayerInfo();
+		payerInfo.setFirstName("PTIT").setLastName("SHOP").setEmail("duongvan@business.example.com");
+		
+		payer.setPayerInfo(payerInfo);
+		return payer;
+	}
+}
