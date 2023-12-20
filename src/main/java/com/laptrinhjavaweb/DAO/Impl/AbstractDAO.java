@@ -20,10 +20,10 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 	public Connection openConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-//			String url = "jdbc:mysql://localhost:3306/ptpm-huongdichvu";
-			String url = "jdbc:mysql://localhost/ptpm-huongdichvu?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			String url = "jdbc:mysql://localhost:3306/ptpm-huongdichvu";
+//			String url = "jdbc:mysql://localhost/ptpm-huongdichvu?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			String userName = "root";
-			String passWord = "";
+			String passWord = "mny10602";
 			return DriverManager.getConnection(url, userName, passWord);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

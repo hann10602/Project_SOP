@@ -30,7 +30,7 @@ public class CartController extends HttpServlet{
 			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 		}else {
-			response.sendRedirect(request.getContextPath()+"/trang-chu");
+			response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login");
 		}
 	}
 	

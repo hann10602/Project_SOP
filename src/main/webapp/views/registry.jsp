@@ -15,24 +15,15 @@
 			<div class="col-md-3 register-left">
 				<img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
 				<h3>Welcome</h3>
-				<p>Sign up to become a member of the <b>PTIT Book Store</b></p>
+				<p>Sign up to become a member of the <b>Book Store</b></p>
 				<a  href="${LOGIN}"><input type="button" name="" value="Login" /></a><br />
 			</div>
 			<div class="col-md-9 register-right">
-				<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-					<li class="nav-item"><a class="nav-link active" id="home-tab"
-						data-toggle="tab" href="#home" role="tab" aria-controls="home"
-						aria-selected="true">PTIT</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile" aria-selected="false">Book Store</a></li>
-				</ul>
 				<div class="tab-content" id="myTabContent">
 				
 				<form action="" id="registryForm1">
 					<div class="tab-pane fade show active" id="home" role="tabpanel"
 						aria-labelledby="home-tab">
-						<h3 class="register-heading">Apply as a PTITER</h3>
 						<div class="row register-form">
 							<div class="col-md-6">
 								<div class="form-group">

@@ -136,6 +136,7 @@
 		});
 		
 		function addBook(data){
+			console.log(data)
 			$.ajax({
 				url : '${APIBOOK}',
 				type : 'POST',

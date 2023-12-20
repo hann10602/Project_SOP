@@ -35,16 +35,16 @@
 				</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350"
-							alt="First slide">
+						<img class="d-block img-fluid object-fit-cover" src="https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=754&fit=clip"
+							alt="First slide" width="900" height="350"/>
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350"
-							alt="Second slide">
+						<img class="d-block img-fluid object-fit-cover" src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9va3N8ZW58MHx8MHx8fDA%3D"
+							alt="Second slide" width="900" height="350"/>
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350"
-							alt="Third slide">
+						<img class="d-block img-fluid object-fit-cover" src="https://st.depositphotos.com/1020422/55244/i/450/depositphotos_552443006-stock-photo-stack-books-wooden-background-back.jpg"
+							alt="Third slide" width="900" height="350"/>
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleIndicators"

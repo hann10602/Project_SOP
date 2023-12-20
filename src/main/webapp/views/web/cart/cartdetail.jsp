@@ -60,8 +60,8 @@
 									type="email" class="form-control"
 									id="exampleInputEmail1_${stt}" value="${item.amount}"
 									onchange="upDateBookFromCart(${stt})"></td>
-								<td class="col-sm-1 col-md-1 text-center"><strong>$${item.price}</strong></td>
-								<td class="col-sm-1 col-md-1 text-center"><strong>$${item.price*item.amount}</strong></td>
+								<td class="col-sm-1 col-md-1 text-center"><strong>${item.price}00đ</strong></td>
+								<td class="col-sm-1 col-md-1 text-center"><strong>${item.price*item.amount}00đ</strong></td>
 								<td class="col-sm-1 col-md-1">
 									<button type="button" class="btn btn-danger"
 										onclick="deleteBookFromCart(${stt})">
@@ -114,7 +114,7 @@
 							<td> </td>
 							<td><h5>Subtotal</h5></td>
 							<td class="text-right"><h5>
-									<strong>$${MYCART.totalCash}</strong>
+									<strong>${MYCART.totalCash}00đ</strong>
 								</h5></td>
 						</tr>
 						<tr>
@@ -127,7 +127,7 @@
 									<c:if test="${not empty MYCART.listBooks}">
 										<c:set var="shipCash" value="5.0"></c:set>
 									</c:if>
-									<strong>$${shipCash}</strong>
+									<strong>${shipCash}00đ</strong>
 								</h5></td>
 						</tr>
 						<tr>
@@ -136,7 +136,7 @@
 							<td> </td>
 							<td><h3>Total</h3></td>
 							<td class="text-right"><h3>
-									<strong>$${MYCART.totalCash + shipCash}</strong>
+									<strong>${MYCART.totalCash + shipCash}00đ</strong>
 								</h3></td>
 						</tr>
 						<tr>
@@ -175,7 +175,7 @@
 										</tr>
 									</table>
 									<input type="hidden" name="amount"
-										value="${MYCART.totalCash + shipCash}"> <input
+										value="${MYCART.totalCash + shipCash}00đ"> <input
 										type="hidden" name="currency_code" value="USD">
 									<!-- <input type="hidden" name="option_select0" value="Monthly Membership">
 								<input type="hidden" name="option_amount0" value="10.00">

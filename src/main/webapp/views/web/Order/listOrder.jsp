@@ -65,7 +65,7 @@
 		                	<tr>
 		                        <td>${item.ID}</td>
 		                        <td>${item.status}</td>
-		                        <td>${item.totalCash} $</td>
+		                        <td>${item.totalCash}00đ</td>
 		                        <td>${item.createDate}</td>
 		                        <td>
 		                        	<c:if test="${item.status != 'Đã Thanh Toán.' }">

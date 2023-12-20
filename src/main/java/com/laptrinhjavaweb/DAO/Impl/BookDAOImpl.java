@@ -25,11 +25,11 @@ public class BookDAOImpl extends AbstractDAO<BookModel> implements IBookDAO{
 	public Integer addBook(BookModel bookModel) {
 		StringBuilder sql = new StringBuilder("INSERT INTO `books`(`categoryID`, `authorID`, `bookName`");
 		sql.append(", `price`, `title`, `thumbnail`, `shortdescription`, `content`, `createBy`,");
-		sql.append("`createDate`, `modifiedBy`, `modifiedDate`)");
-		sql.append("VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+		sql.append("`createDate`)");
+		sql.append("VALUES (?,?,?,?,?,?,?,?,?,?)");
 		return save(sql.toString(),bookModel.getCategoryID(), bookModel.getAuthorID(), bookModel.getBookName(),
 				bookModel.getPrice(),bookModel.getTitle(),bookModel.getThumbnail(),bookModel.getShortdescription(),
-				bookModel.getContent(), bookModel.getCreateBy(), bookModel.getCreateDate(), bookModel.getModifiedBy(),bookModel.getModifiedDate());
+				bookModel.getContent(), bookModel.getCreateBy(), bookModel.getCreateDate());
 	}
 
 	@Override

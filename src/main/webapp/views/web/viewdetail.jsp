@@ -15,7 +15,6 @@
 	<div class="row">
 
 		<div class="col-lg-3">
-			<h1 class="my-4" style="color: red">PTIT</h1>
 			<h2 class="my-4" >Book Store</h2>
 			<div class="list-group">
 				<c:forEach var="item" items="${LISTCATEGORY}">
@@ -33,7 +32,7 @@
 					<!--  src="http://placehold.it/900x400" alt=""> -->
 				<div class="card-body">
 					<h3 class="card-title">${LISTBOOK.bookName}</h3>
-					<h4>${LISTBOOK.price} $</h4>
+					<h4>${LISTBOOK.price}00đ</h4>
 					<p class="card-text">${LISTBOOK.title}</p>
 					<a class="btn btn-success" id="aAddToCart">Thêm Vào Giỏ Hàng</a><br>
 					<span class="text-warning">&#9733; &#9733; &#9733; &#9733;
@@ -90,7 +89,7 @@
 									                               </span><br>
 									                               <strong class="text-success">${item.name}</strong>
 									                               <p>
-									                                   ${item.commentContent} <br><a href="#">Sinh Viên PTIT :Đ </a>
+									                                   ${item.commentContent} <br><a href="#">Sinh Viên HAU :Đ </a>
 									                                   <br>
 									                                   <c:if test="${not empty USERMODEL}">									                       
 									                                   		<c:if test="${USERMODEL.ID == item.userID}" >
